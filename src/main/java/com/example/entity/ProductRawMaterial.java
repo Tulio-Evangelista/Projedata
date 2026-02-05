@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "product_raw_material")
 public class ProductRawMaterial {
 
@@ -18,7 +16,7 @@ public class ProductRawMaterial {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name= "product_id", nullable = false)
     private Product product;
 
@@ -40,6 +38,7 @@ public class ProductRawMaterial {
     public ProductRawMaterial() {
 
     }
+
 
     public Long getId() {
         return id;

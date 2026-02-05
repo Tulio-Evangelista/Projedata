@@ -77,4 +77,9 @@ public class Product {
     public void setRawMaterials(List<ProductRawMaterial> rawMaterials) {
         this.rawMaterials = rawMaterials;
     }
+
+
+
+
 }
+

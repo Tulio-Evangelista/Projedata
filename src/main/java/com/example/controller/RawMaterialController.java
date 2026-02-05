@@ -4,6 +4,8 @@ import com.example.dto.RawMaterialRequestDTO;
 import com.example.dto.RawMaterialResponseDTO;
 import com.example.entity.RawMaterial;
 import com.example.service.RawMaterialService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,8 @@ public class RawMaterialController {
 
 
     @GetMapping
-    public List<RawMaterialResponseDTO> findAll() {
-        return rawMaterialService.findAll();
+    public Page<RawMaterialResponseDTO> findAll(Pageable pageable) {
+        return rawMaterialService.findAll(pageable);
     }
 
     @GetMapping("/{id}")

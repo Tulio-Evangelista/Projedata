@@ -4,6 +4,8 @@ import com.example.dto.ProductRequestDTO;
 import com.example.dto.ProductResponseDTO;
 import com.example.entity.Product;
 import com.example.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,9 @@ public class ProductService {
     }
 
 
-    public List<ProductResponseDTO> findAll() {
-        return productRepository.findAll().stream()
-                .map(ProductResponseDTO::new)
-                .toList();
+    public Page<ProductResponseDTO> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable).map(ProductResponseDTO::new);
+
     }
 
     public ProductResponseDTO findById(Long id) {

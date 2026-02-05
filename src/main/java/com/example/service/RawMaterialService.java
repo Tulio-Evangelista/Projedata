@@ -5,6 +5,8 @@ import com.example.dto.RawMaterialRequestDTO;
 import com.example.dto.RawMaterialResponseDTO;
 import com.example.entity.RawMaterial;
 import com.example.repository.RawMaterialRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +21,9 @@ public class RawMaterialService {
     }
 
 
-    public List<RawMaterialResponseDTO> findAll() {
-      return rawMaterialRepository.findAll().stream()
-                .map(RawMaterialResponseDTO::new)
-                .toList();
+    public Page<RawMaterialResponseDTO> findAll(Pageable pageable) {
+      return rawMaterialRepository.findAll(pageable).map(RawMaterialResponseDTO::new);
+
     }
 
     public RawMaterialResponseDTO findById(Long id) {

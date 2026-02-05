@@ -67,5 +67,11 @@ public class RawMaterial {
     @OneToMany(mappedBy = "rawMaterial")
     private List<ProductRawMaterial> products = new ArrayList<>();
 
+    public List<ProductRawMaterial> getProducts() {
+        return products;
+    }
 
+    public void setProducts(List<ProductRawMaterial> products) {
+        this.products = products;
+    }
 }

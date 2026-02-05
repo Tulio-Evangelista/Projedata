@@ -2,6 +2,8 @@ package com.example.controller;
 import com.example.dto.ProductRequestDTO;
 import com.example.dto.ProductResponseDTO;
 import com.example.service.ProductService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,8 @@ public class ProductController {
     }
 
         @GetMapping
-        public List<ProductResponseDTO> findAll() {
-            return productService.findAll();
+        public Page<ProductResponseDTO> findAll(Pageable pageable) {
+            return productService.findAll(pageable);
         }
 
         @GetMapping("/{id}")

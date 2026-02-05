@@ -1,27 +1,33 @@
 package com.example.service;
 
 import com.example.dto.ProductionProductDTO;
-import com.example.dto.ProductionRequestDTO;
 import com.example.dto.ProductionResponseDTO;
 import com.example.entity.Product;
 import com.example.entity.ProductRawMaterial;
 import com.example.entity.RawMaterial;
 import com.example.repository.ProductRepository;
+import com.example.repository.RawMaterialRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Transactional
+@Service
 public class ProductionService {
 
 
     private final ProductRepository productRepository;
+    private final RawMaterialRepository rawMaterialRepository;
 
-    public ProductionService(ProductRepository productRepository) {
+    public ProductionService(ProductRepository productRepository, RawMaterialRepository rawMaterialRepository) {
         this.productRepository = productRepository;
+        this.rawMaterialRepository = rawMaterialRepository;
     }
+
 
     public ProductionResponseDTO calculateProduction() {
 
@@ -39,21 +45,30 @@ public class ProductionService {
 
         List<ProductionProductDTO> productionList = new ArrayList<>();
 
-        // 3. Cálculo da produção
+
         for (Product product : products) {
 
             int maxQuantity = Integer.MAX_VALUE;
 
             for (ProductRawMaterial prm : product.getRawMaterials()) {
+
+                int required = prm.getRequiredQuantity();
+                if (required <= 0) {
+                    throw new IllegalStateException(
+                            "Required quantity inválida para o produto " + product.getName()
+                    );
+                }
+
                 Long rawMaterialId = prm.getRawMaterial().getId();
                 int available = stockMap.getOrDefault(rawMaterialId, 0);
                 int possible = available / prm.getRequiredQuantity();
                 maxQuantity = Math.min(maxQuantity, possible);
             }
 
+
             if (maxQuantity > 0 && maxQuantity != Integer.MAX_VALUE) {
 
-                // 4. Consumo do estoque simulado
+
                 for (ProductRawMaterial prm : product.getRawMaterials()) {
                     Long rawMaterialId = prm.getRawMaterial().getId();
                     int used = prm.getRequiredQuantity() * maxQuantity;
