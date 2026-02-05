@@ -66,7 +66,15 @@ public class Product {
         this.code = code;
     }
 
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductRawMaterial> rawMaterials = new ArrayList<>();
 
+    public List<ProductRawMaterial> getRawMaterials() {
+        return rawMaterials;
+    }
+
+    public void setRawMaterials(List<ProductRawMaterial> rawMaterials) {
+        this.rawMaterials = rawMaterials;
+    }
 }
