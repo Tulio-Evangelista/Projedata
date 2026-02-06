@@ -7,6 +7,10 @@ import com.example.service.RawMaterialService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,17 +24,19 @@ public class RawMaterialController {
         this.rawMaterialService = rawMaterialService;
     }
 
-
+    @Operation(summary = "list all raw materials")
     @GetMapping
     public Page<RawMaterialResponseDTO> findAll(Pageable pageable) {
         return rawMaterialService.findAll(pageable);
     }
 
+    @Operation(summary = "find raw material by id")
     @GetMapping("/{id}")
     public RawMaterialResponseDTO findById(@PathVariable Long id) {
         return rawMaterialService.findById(id);
     }
 
+    @Operation(summary = "create new raw material")
     @PostMapping
     public RawMaterialResponseDTO create(@RequestBody RawMaterialRequestDTO rawMaterial) {
         return rawMaterialService.create(rawMaterial);

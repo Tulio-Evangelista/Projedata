@@ -74,7 +74,7 @@ class ProductionServiceTest {
         when(productRepository.findAllByOrderByPriceDesc()).thenReturn(Collections.singletonList(product));
 
 
-        ProductionResponseDTO response = productionService.calculateProduction();
+        ProductionResponseDTO response = (ProductionResponseDTO) productionService.calculateProduction(null).getContent().get(0);
 
 
         List<ProductionProductDTO> list = response.getProducts();

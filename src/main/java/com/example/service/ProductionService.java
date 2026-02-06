@@ -7,6 +7,9 @@ import com.example.entity.ProductRawMaterial;
 import com.example.entity.RawMaterial;
 import com.example.repository.ProductRepository;
 import com.example.repository.RawMaterialRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +26,15 @@ public class ProductionService {
     private final ProductRepository productRepository;
     private final RawMaterialRepository rawMaterialRepository;
 
+
     public ProductionService(ProductRepository productRepository, RawMaterialRepository rawMaterialRepository) {
         this.productRepository = productRepository;
         this.rawMaterialRepository = rawMaterialRepository;
+
     }
 
 
-    public ProductionResponseDTO calculateProduction() {
+    public Page<ProductionProductDTO> calculateProduction(Pageable pageable) {
 
         List<Product> products = productRepository.findAllByOrderByPriceDesc();
 
@@ -87,8 +92,14 @@ public class ProductionService {
             }
         }
 
-        return new ProductionResponseDTO(productionList);
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), productionList.size());
+        return new PageImpl<>(productionList.subList(start, end), pageable, productionList.size());
     }
+
+
+
 }
 
 

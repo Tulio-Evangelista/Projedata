@@ -15,6 +15,10 @@ public class ProductRawMaterialResponseDTO {
         this.rawMaterialName = prm.getRawMaterial().getName();
         this.requiredQuantity = prm.getRequiredQuantity();
     }
+    public ProductRawMaterialResponseDTO() {
+
+    }
+
 
     public Long getRawMaterialId() {
         return rawMaterialId;

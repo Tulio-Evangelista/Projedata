@@ -4,6 +4,10 @@ import com.example.dto.ProductRawMaterialResponseDTO;
 import com.example.entity.ProductRawMaterial;
 import com.example.service.ProductRawMaterialService;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,17 +21,18 @@ public class ProductRawMaterialController {
         this.productRawMaterialService = productRawMaterialService;
     }
 
-    @PostMapping
+    @Operation(summary = "vinculate a raw material to a product")
+    @PostMapping("/{productId}/add")
     public ProductRawMaterialResponseDTO add(
             @PathVariable Long productId,
-            @RequestParam Long rawMaterialId,
-            @RequestParam Integer requiredQuantity) {
+            @RequestBody ProductRawMaterialResponseDTO requestDTO) {
 
         return productRawMaterialService.addRawMaterialToProduct(
-                productId, rawMaterialId, requiredQuantity);
+                productId, requestDTO.getRawMaterialId(), requestDTO.getRequiredQuantity());
     }
 
-    @GetMapping
+    @Operation(summary = "lista a raw material vinculated to a product")
+    @GetMapping("/{productId}/raw-materials")
     public List<ProductRawMaterialResponseDTO> list(@PathVariable Long productId) {
         return productRawMaterialService.findByProduct(productId);
     }
