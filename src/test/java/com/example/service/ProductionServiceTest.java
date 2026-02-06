@@ -80,7 +80,7 @@ class ProductionServiceTest {
         List<ProductionProductDTO> list = response.getProducts();
         assertThat(list).hasSize(1);
         assertThat(list.get(0).getProductName()).isEqualTo("Produto A");
-        assertThat(list.get(0).getQuantity()).isEqualTo(10); // RM2 limita a produção
+        assertThat(list.get(0).getQuantity()).isEqualTo(10);
     }
 
 

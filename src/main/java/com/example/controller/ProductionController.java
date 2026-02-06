@@ -14,10 +14,11 @@ public class ProductionController {
     private final ProductionService productionService;
 
     public ProductionController(ProductionService productionService) {
+
         this.productionService = productionService;
     }
 
-    @GetMapping("/suggestion")
+    @GetMapping("/calculate")
     public ProductionResponseDTO getProductionSuggestion() {
         return productionService.calculateProduction();
     }
