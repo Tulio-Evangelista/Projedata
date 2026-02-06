@@ -5,6 +5,7 @@ import com.example.dto.RawMaterialRequestDTO;
 import com.example.dto.RawMaterialResponseDTO;
 import com.example.entity.RawMaterial;
 import com.example.repository.RawMaterialRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -55,5 +56,12 @@ public class RawMaterialService {
         rawMaterialRepository.deleteById(id);
     }
 
+    @Transactional
+    public RawMaterial adjustStock(Long rawMaterialId, int quantity) {
+        RawMaterial rm = rawMaterialRepository.findById(rawMaterialId)
+                .orElseThrow(() -> new IllegalArgumentException("Matéria-prima not found com ID: " + rawMaterialId));
+        rm.setQuantity(rm.getQuantity() + quantity);
+        return rawMaterialRepository.save(rm);
+    }
 
 }

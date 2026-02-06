@@ -1,13 +1,9 @@
 package com.example.controller;
 
 import com.example.dto.ProductRawMaterialResponseDTO;
-import com.example.entity.ProductRawMaterial;
 import com.example.service.ProductRawMaterialService;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

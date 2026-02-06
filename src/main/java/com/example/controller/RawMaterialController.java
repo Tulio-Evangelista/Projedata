@@ -53,4 +53,12 @@ public class RawMaterialController {
         rawMaterialService.delete(id);
     }
 
+    @PatchMapping("/raw-materials/{id}/adjust")
+    public RawMaterial adjustRawMaterialStock(
+            @PathVariable Long id,
+            @RequestParam int quantity) {
+        return rawMaterialService.adjustStock(id, quantity);
+    }
+
+
 }
