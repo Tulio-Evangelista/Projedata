@@ -1,0 +1,130 @@
+/* Container principal */
+.product-page-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Formulário de produto */
+.product-form-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Tabela de produtos */
+.products-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background-color: #ffffff;
+}
+
+.products-table th, 
+.products-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.products-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+.products-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Botões */
+.actions-cell button {
+  margin: 2px;
+}
+
+.action-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.action-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Card de matérias-primas */
+.raw-materials-card {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+}
+
+/* Form de matérias-primas */
+.raw-materials-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.raw-materials-form select,
+.raw-materials-form input {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 150px;
+}
+
+/* Lista de matérias-primas */
+.raw-materials-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.raw-materials-list li {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .products-table th, .products-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .raw-materials-form select,
+  .raw-materials-form input {
+    min-width: 100%;
+  }
+}

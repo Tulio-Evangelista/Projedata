@@ -1,0 +1,12 @@
+{
+  "products": [
+    { "id": 1, "code": 101, "name": "Produto A", "price": 10.0 },
+    { "id": 2, "code": 102, "name": "Produto B", "price": 15.5 },
+    { "id": 3, "code": 103, "name": "Produto C", "price": 7.25 }
+  ],
+  "rawMaterials": [
+    { "id": 1, "code": 201, "name": "Matéria Prima X", "quantity": 100 },
+    { "id": 2, "code": 202, "name": "Matéria Prima Y", "quantity": 200 },
+    { "id": 3, "code": 203, "name": "Matéria Prima Z", "quantity": 150 }
+  ]
+}
